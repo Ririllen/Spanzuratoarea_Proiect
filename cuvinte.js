@@ -11,7 +11,6 @@ class Cuvant{
 
 let cuvant = new Cuvant();
 let cuvantAleatoriu = cuvant.extrageCuvantAleatoriu();
-// let cuvantAleatoriu = 'WMAWUM';
 
 let word = document.getElementById('word');
 
@@ -25,43 +24,50 @@ for(let i=0; i<cuvantAleatoriu.length; i++){
     word.appendChild(litera);
 }
 
-let adaugaLitera = document.getElementById('adauga-litera');
 
-adaugaLitera.addEventListener('click', ()=>{    
-        let literaTemp = 'W';
+
+document.querySelectorAll('.key').forEach(item => {
+    item.addEventListener('click', event => {
         
-        let position = cuvantAleatoriu.indexOf(literaTemp);
-        let id = 'litera'+position;
-        
-        let loc = document.getElementById(id);
-        loc.innerHTML = literaTemp.toUpperCase();
-        loc.classList.remove('bdr-bottom');
+        let literaApasata = item.id[item.id.length-1];
 
+        if (item.classList.length === 1){ //the button is not disabled
+            
+            let position = cuvantAleatoriu.indexOf(literaApasata);
 
-        while (position !== -1) {
-          position = cuvantAleatoriu.indexOf(literaTemp, position + 1);
-          if (position !== -1){
-                id = 'litera'+position;
-                loc = document.getElementById(id);
-                loc.innerHTML = literaTemp.toUpperCase();
+            if (position !== -1){
 
+                let id_key = document.getElementById(item.id);
+                id_key.classList.add('disable-button');            
+
+                let id = 'litera'+position;
+                
+                let loc = document.getElementById(id);
+                loc.innerHTML = literaApasata.toUpperCase();
                 loc.classList.remove('bdr-bottom');
-            };
-  
-        }
-});
 
 
+                while (position !== -1) {
+                position = cuvantAleatoriu.indexOf(literaApasata, position + 1);
+                if (position !== -1){
+                        id = 'litera'+position;
+                        loc = document.getElementById(id);
+                        loc.innerHTML = literaApasata.toUpperCase();
+
+                        loc.classList.remove('bdr-bottom');
+                    };
+        
+                }
+            } else {
+            let id_key = document.getElementById(item.id);
+            id_key.classList.add('disable-button');
+            }
+        }//the button is not disabled
+
+    })
+  })
 
 
-
-
-// for(let i=0; i<cuvantAleatoriu.length; i++){
-//     let litera = document.createElement('div');
-//     litera.classList.add('bg-yellow', 'bdr-bottom');
-//     litera.innerText = cuvantAleatoriu[i].toUpperCase();
-//     word.appendChild(litera);
-// }
 
 
 

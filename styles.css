@@ -57,3 +57,7 @@ img{
     width: 200px;
     height: 150px;
 }
+
+.disable-button{
+    background-color: blueviolet;
+}
