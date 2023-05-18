@@ -22,7 +22,10 @@ const disableKeyboard = () => {
     }}); 
 };
 
-let numberLives = 10,
+const hangmanPartId = ['franghia','cap', 'trunchi', 'mana-stanga', 'mana-dreapta', 'picior-stang', 'picior-drept'];
+
+let numberLives = 7,
+    mistakeNumber = -1,
     cuvantAleatoriu = Cuvant.extrageCuvantAleatoriu(),
     lungimeCuvantAleatoriu = cuvantAleatoriu.length,
     word = document.getElementById('word'),
@@ -97,11 +100,19 @@ document.querySelectorAll('.key').forEach(item => {
                 }
 
                 // when this happens, disable all keys
-                disableKeyboard();                    
+                disableKeyboard(); 
+                
+                mistakeNumber++;
+                const hangmanPart = document.getElementById(hangmanPartId[mistakeNumber]);
+                hangmanPart.classList.remove('hidden');
 
             } else {
                 numberLives--;
                 lives.innerHTML = `You have ${numberLives} lives left`;
+
+                mistakeNumber++;
+                const hangmanPart = document.getElementById(hangmanPartId[mistakeNumber]);
+                hangmanPart.classList.remove('hidden');
             }
         }
     })
