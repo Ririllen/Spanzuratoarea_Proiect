@@ -72,9 +72,14 @@ img{
 #restart{
     visibility: hidden;
     border: 3px yellow solid;
-    background-color: #39FF14;
+    background-color:  pink;  
     padding: 3px;
 }
+
+#restart:hover {
+    background-color: fuchsia;
+    cursor: pointer;
+  }
 
 #hangman{
     width: 100px;
